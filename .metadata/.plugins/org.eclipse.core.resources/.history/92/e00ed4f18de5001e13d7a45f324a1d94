@@ -1,0 +1,5 @@
+spring.profiles.active=develpment
+spring.application.name=SpringBootCoreFramework
+
+server.port=8081
+server.servlet.context-path=/sistema-venda
