@@ -7,7 +7,6 @@ INDEX VERSION 1.134+C:\SpringBootExpert\.metadata\.plugins\org.eclipse.jdt.core
 3083154802.index
 1140966517.index
 3678157332.index
-854103906.index
 1874317138.index
 2725617631.index
 2069694207.index
