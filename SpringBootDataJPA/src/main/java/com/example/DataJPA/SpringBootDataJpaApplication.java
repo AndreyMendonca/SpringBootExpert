@@ -9,49 +9,52 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.example.DataJPA.domain.entity.Cliente;
-import com.example.DataJPA.domain.repository.Clientes;
+import com.example.DataJPA.domain.repository.ClientesJPA;
 
 @SpringBootApplication
 public class SpringBootDataJpaApplication {
 	
 	@Bean
-	public CommandLineRunner init(@Autowired Clientes clientes) {
+	public CommandLineRunner init(@Autowired ClientesJPA clientes) {
 		return args -> {
 			Cliente cliente = new Cliente();
 			cliente.setNome("Andrey");
-			clientes.salvar(cliente);
-			
 			Cliente cliente2 = new Cliente();
-			
-			//salvar
 			cliente2.setNome("Jorge");
+			
+			//SALVAR CLIENTE
+			clientes.salvar(cliente);
 			clientes.salvar(cliente2);
 			
-			List<Cliente> todosClientes =  clientes.obterTodos();
-			todosClientes.forEach(System.out::println);
+			List<Cliente> todosOsClientes = clientes.obterTodos();
+			todosOsClientes.forEach(System.out::println);
 			
-			//update
-			todosClientes.forEach(c->{
-				c.setNome(c.getNome()+ " atualizado");
+			//ATUALIZAR CLIENTE
+			todosOsClientes.forEach(c->{
+				c.setNome(c.getNome() + " atualizado");
 				clientes.atualizar(c);
 			});
-			todosClientes =  clientes.obterTodos();
-			todosClientes.forEach(System.out::println);
+			System.out.println("Clientes atualizados");
+			todosOsClientes = clientes.obterTodos();
+			todosOsClientes.forEach(System.out::println);
 			
-			//buscar cliente
-			System.out.print("Busca por cliente com 'and' = ");
-			clientes.buscarPorNome("And").forEach(System.out::println);
+			//BUSCAR POR NOME
+			System.out.print("Busca pelo cliente com nome 'And': ");
+			todosOsClientes = clientes.buscarPorNome("And");
+			todosOsClientes.forEach(System.out::println);
 			
-			//deletando cliente
+			//DELETAR TUDO
 			clientes.obterTodos().forEach(c->{
-				clientes.deletar(c.getId());
-			});		
-			todosClientes =  clientes.obterTodos();
-			if(todosClientes.isEmpty()) {
-				System.out.println("Todos os clientes deletesdos");
+				clientes.deletar(c);
+			});
+			
+			todosOsClientes = clientes.obterTodos();
+			if(todosOsClientes.isEmpty()) {
+				System.out.println("Deletado todos os clientes");
 			}else {
-				System.out.println("Fala ao deletar clientes");
+				System.out.println("Erro ao deletar");
 			}
+			
 		};
 	}
 
