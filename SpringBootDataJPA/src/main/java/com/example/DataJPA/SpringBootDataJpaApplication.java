@@ -42,8 +42,11 @@ public class SpringBootDataJpaApplication {
 			todosOsClientes.forEach(System.out::println);
 			
 			//BUSCAR POR NOME
-			System.out.print("Busca pelo cliente com nome 'And': ");
+			System.out.println("Busca pelo cliente com nome 'And': ");
 			clientes.findByNomeLike("Andrey").forEach(System.out::println);
+			
+			System.out.print("Busca pelo cliente com nome 'And': ");
+			clientes.encontrarPorNome2("Andrey").forEach(System.out::println);
 			
 			
 			//DELETAR TUDO
