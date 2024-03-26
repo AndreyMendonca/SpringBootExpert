@@ -1,6 +1,7 @@
 package com.example.DataJPA;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,19 +10,34 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.example.DataJPA.domain.entity.Cliente;
+import com.example.DataJPA.domain.entity.Pedido;
 import com.example.DataJPA.domain.repository.ClientesJpaRepository;
+import com.example.DataJPA.domain.repository.Pedidos;
 
 @SpringBootApplication
 public class SpringBootDataJpaApplication {
 	
 	@Bean
-	public CommandLineRunner init(@Autowired ClientesJpaRepository clientes) {
+	public CommandLineRunner init(@Autowired ClientesJpaRepository clientes, @Autowired Pedidos pedidos) {
 		return args -> {
 			Cliente cliente = new Cliente();
 			cliente.setNome("Andrey");
-			Cliente cliente2 = new Cliente();
-			cliente2.setNome("Jorge");
+			clientes.save(cliente);
 			
+			Pedido p = new Pedido();
+			p.setClient(cliente);
+			p.setDataPedido(LocalDate.now());
+			p.setTotal(BigDecimal.valueOf(100));
+			
+			pedidos.save(p);
+			
+			Cliente c = clientes.findClienteFetchPedido(cliente.getId());
+			System.out.println(c);
+			System.out.println(c.getPedidos());		
+			
+			pedidos.findByCliente(cliente).forEach(System.out::println);
+			
+			/*
 			//SALVAR CLIENTE
 			clientes.save(cliente);
 			clientes.save(cliente2);
@@ -60,7 +76,7 @@ public class SpringBootDataJpaApplication {
 			}else {
 				System.out.println("Erro ao deletar");
 			}
-			
+			*/
 		};
 	}
 
