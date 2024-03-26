@@ -1,4 +1,0 @@
-spring.profiles.active=develpment
-
-server.port=8081
-server.servlet.context-path=/sistema-venda
