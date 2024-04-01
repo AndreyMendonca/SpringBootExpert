@@ -25,6 +25,7 @@ public class ItemPedido {
 	private Produto produto;
 	
 	private Integer quantidade;
+	
 	public Integer getId() {
 		return id;
 	}

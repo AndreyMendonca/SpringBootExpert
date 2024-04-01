@@ -1,11 +1,13 @@
 package com.example.SpringWeb.domain.entity;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,7 +18,11 @@ public class Product {
 	private Integer id;
 	
 	private String name;
+	
 	private BigDecimal price;
+	
+	@OneToMany(mappedBy = "product")
+	private Set<OrderItem> orderItem;
 	
 	public Product() {}
 
