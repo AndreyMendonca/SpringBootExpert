@@ -22,6 +22,9 @@ public class Client {
 	@Column(length = 100)
 	private String name;
 	
+	@Column(length = 11)
+	private String cpf;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private Set<Order> orders; 
@@ -29,9 +32,10 @@ public class Client {
 	public Client() {
 	}
 
-	public Client(Integer id, String name) {
+	public Client(Integer id, String name, String cpf) {
 		this.id = id;
 		this.name = name;
+		this.cpf = cpf;
 	}
 
 	public Integer getId() {
@@ -48,6 +52,15 @@ public class Client {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public Set<Order> getOrders() {
