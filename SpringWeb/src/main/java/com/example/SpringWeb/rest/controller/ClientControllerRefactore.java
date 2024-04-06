@@ -71,7 +71,7 @@ public class ClientControllerRefactore {
 	
 	@PutMapping("/{id}")
 	@ResponseBody
-	public ResponseEntity update(
+	public ResponseEntity<?> update(
 			@PathVariable Integer id, 
 			@RequestBody Client client){
 		return repository.findById(id)
@@ -83,14 +83,13 @@ public class ClientControllerRefactore {
 	}
 	
 	@GetMapping
-	public ResponseEntity find(Client filter) {
+	public List<Client> find(Client filter) {
 		ExampleMatcher matcher = ExampleMatcher
 				.matching()
 				.withIgnoreCase()
 				.withStringMatcher(StringMatcher.CONTAINING);
-		Example example = Example.of(filter, matcher);
-		List<Client> clients = repository.findAll(example);
-		return ResponseEntity.ok(clients);
+		Example<Client> example = Example.of(filter, matcher);
+		return repository.findAll(example);
 	}
 	
 }
