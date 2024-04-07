@@ -2,7 +2,7 @@ package com.example.SpringWeb.domain.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,7 +29,7 @@ public class Order {
 	private BigDecimal amount;
 	
 	@OneToMany(mappedBy = "order")
-	private Set<OrderItem> orderItem; 
+	private List<OrderItem> orderItem; 
 	
 	public Order() {}
 
@@ -61,6 +61,14 @@ public class Order {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public List<OrderItem> getOrderItem() {
+		return orderItem;
+	}
+
+	public void setOrderItem(List<OrderItem> orderItem) {
+		this.orderItem = orderItem;
 	}
 
 	@Override
