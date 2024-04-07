@@ -4,7 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.example.SpringWeb.domain.enums.OrderStatus;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,6 +34,9 @@ public class Order {
 	
 	@OneToMany(mappedBy = "order")
 	private List<OrderItem> orderItem; 
+	
+	@Enumerated(EnumType.STRING)
+	private OrderStatus orderStatus;
 	
 	public Order() {}
 
@@ -69,6 +76,15 @@ public class Order {
 
 	public void setOrderItem(List<OrderItem> orderItem) {
 		this.orderItem = orderItem;
+	}
+	
+
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.example.SpringWeb.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -10,10 +11,12 @@ import com.example.SpringWeb.domain.entity.Client;
 import com.example.SpringWeb.domain.entity.Order;
 import com.example.SpringWeb.domain.entity.OrderItem;
 import com.example.SpringWeb.domain.entity.Product;
+import com.example.SpringWeb.domain.enums.OrderStatus;
 import com.example.SpringWeb.domain.repository.ClientRepository;
 import com.example.SpringWeb.domain.repository.OrderItemRepository;
 import com.example.SpringWeb.domain.repository.OrderRepository;
 import com.example.SpringWeb.domain.repository.ProductRepository;
+import com.example.SpringWeb.exception.OrderNotFoundException;
 import com.example.SpringWeb.exception.RulesException;
 import com.example.SpringWeb.rest.DTO.OrderDTO;
 import com.example.SpringWeb.rest.DTO.OrderItemDTO;
@@ -43,9 +46,10 @@ public class OrderServiceImpl implements OrderService{
 		order.setAmount(dto.getAmount());
 		order.setOrderData(LocalDate.now());
 		order.setClient(client);
+		order.setOrderStatus(OrderStatus.ACTIVE);
 		
 		List<OrderItem> orderItems =  convertItems(order, dto.getItems());
-		order.setOrderItem( orderItems);
+		order.setOrderItem(orderItems);
 		orderRepository.save(order);
 		orderItemRepository.saveAll(orderItems);
 		return order;
@@ -72,5 +76,22 @@ public class OrderServiceImpl implements OrderService{
 					orderItem.setProduct(product);
 					return orderItem;
 				}).collect(Collectors.toList());
+	}
+
+	@Override
+	public Optional<Order> getOrderComplect(Integer id) {
+		return orderRepository.findByIdFetchOrderItem(id);
+	}
+
+	@Override
+	@Transactional
+	public void updateOrderStatus(Integer id, OrderStatus orderStatus) {
+		orderRepository
+			.findById(id)
+			.map(order -> {
+				order.setOrderStatus(orderStatus);
+				return orderRepository.save(order);
+			}).orElseThrow(()-> new OrderNotFoundException());
+		
 	}
 }
