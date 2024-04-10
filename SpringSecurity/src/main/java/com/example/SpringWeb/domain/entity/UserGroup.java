@@ -16,10 +16,12 @@ public class UserGroup {
 	private Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_user")
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_group")
+	@JoinColumn(name="group_id")
 	private Group group;
+
+	
 }
