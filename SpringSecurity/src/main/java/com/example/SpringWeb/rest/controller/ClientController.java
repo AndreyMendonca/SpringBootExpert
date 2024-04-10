@@ -8,6 +8,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,12 @@ public class ClientController {
 	@GetMapping("/private")
 	public ResponseEntity<String> privateRoute(Authentication authentication){
 		return ResponseEntity.ok("Private Route ok! Usuario conectado: " + authentication.getName());
+	}
+	
+	@GetMapping("/admin")
+	@PreAuthorize("hasRole('admin')")
+	public ResponseEntity<String> adminRoute(){
+		return ResponseEntity.ok("Admin Route ok! Usuario conectado: ");
 	}
 	
 	@GetMapping("/{id}")

@@ -24,7 +24,7 @@ public class PasswordMasterAuthenticationProvider implements AuthenticationProvi
 			return new UsernamePasswordAuthenticationToken(
 					"User Master", 
 					null, 
-					List.of(new SimpleGrantedAuthority("ADMIN"))
+					List.of(new SimpleGrantedAuthority("admin"))
 			);
 		}
 		
