@@ -13,9 +13,9 @@ import lombok.Data;
 public class Group {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private String id;
 	
-	private String description;
+	private String name;
 	
 }

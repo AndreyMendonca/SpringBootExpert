@@ -12,8 +12,8 @@ import lombok.Data;
 @Data
 public class UserGroup {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private String id;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -22,6 +22,11 @@ public class UserGroup {
 	@ManyToOne
 	@JoinColumn(name="group_id")
 	private Group group;
+	
+	public UserGroup(User user, Group group) {
+		this.group = group;
+		this.user = user;
+	}
 
 	
 }

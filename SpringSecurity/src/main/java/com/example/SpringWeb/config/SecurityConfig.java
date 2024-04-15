@@ -30,16 +30,19 @@ public class SecurityConfig{
 	public SecurityFilterChain securityFilterChain(
 			HttpSecurity http, 
 			PasswordMasterAuthenticationProvider passwordMasterAuthenticationProvides,
+			CustomAuthenticationProvider customAuthenticationProvider,
 			CustomFilter customFilter) throws Exception{
 		return http
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(customizer -> {
 					customizer.requestMatchers("/api/client").permitAll();
+					customizer.requestMatchers("/h2-console");
 					customizer.anyRequest().authenticated();
 				})
 				.httpBasic(Customizer.withDefaults())
 				.formLogin(Customizer.withDefaults())
 				.authenticationProvider(passwordMasterAuthenticationProvides)
+				.authenticationProvider(customAuthenticationProvider)
 				.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class)
 				.build();
 	}
