@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.security.provisioning.InMemoryUserDetailsManager"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetails"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.User"/>
-    <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
-    <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
-    <fullyQualifiedTypeName name="com.example.SpringWeb.config.PasswordMasterAuthenticationProvider"/>
-    <fullyQualifiedTypeName name="org.springframework.web.filter.OncePerRequestFilter"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContext"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
-    <fullyQualifiedTypeName name="com.example.SpringWeb.config.CustomFilter"/>
-    <fullyQualifiedTypeName name="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"/>
-    <fullyQualifiedTypeName name="org.springframework.security.config.core.GrantedAuthorityDefaults"/>
-    <fullyQualifiedTypeName name="org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity"/>
     <fullyQualifiedTypeName name="jakarta.persistence.IdClass"/>
     <fullyQualifiedTypeName name="jakarta.persistence.ManyToMany"/>
     <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer"/>
@@ -60,4 +46,18 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="com.example.mysql.entities.Client"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="springfox.documentation.swagger2.annotations.EnableSwagger2"/>
+    <fullyQualifiedTypeName name="springfox.documentation.spring.web.plugins.Docket"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+    <fullyQualifiedTypeName name="springfox.documentation.service.ApiInfo"/>
+    <fullyQualifiedTypeName name="springfox.documentation.builders.ApiInfoBuilder"/>
+    <fullyQualifiedTypeName name="springfox.documentation.spi.DocumentationType"/>
+    <fullyQualifiedTypeName name="springfox.documentation.builders.RequestHandlerSelectors"/>
+    <fullyQualifiedTypeName name="springfox.documentation.builders.PathSelectors"/>
+    <fullyQualifiedTypeName name="springfox.documentation.service.Contact"/>
+    <fullyQualifiedTypeName name="org.hibernate.validator.constraints.NotEmpty"/>
+    <fullyQualifiedTypeName name="jakarta.validation.constraints.NotEmpty"/>
+    <fullyQualifiedTypeName name="jakarta.validation.Valid"/>
+    <fullyQualifiedTypeName name="jakarta.validation.constraints.NotNull"/>
 </qualifiedTypeNameHistroy>
