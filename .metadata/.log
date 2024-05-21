@@ -10236,3 +10236,24 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.springframework.tooling.boot.ls 1 0 2024-05-20 19:01:06.772
 !MESSAGE Boot project ADDED: SpringWebBeanValidation
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-05-20 19:40:46.196
+!MESSAGE Classpath changed for project: SpringBootSecurity
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-05-20 19:40:47.882
+!MESSAGE Classpath changed for project: SpringBootSecurity
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-05-20 19:40:47.883
+!MESSAGE Boot project ADDED: SpringBootSecurity
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-05-20 19:40:48.997
+!MESSAGE Classpath changed for project: SpringBootSecurity
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-05-20 19:46:34.568
+!MESSAGE Classpath changed for project: SpringBootSecurity
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-05-20 19:46:34.614
+!MESSAGE Classpath changed for project: SpringBootSecurity
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-05-20 19:46:37.566
+!MESSAGE Classpath changed for project: SpringBootSecurity
