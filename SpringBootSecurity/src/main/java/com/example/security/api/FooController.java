@@ -1,6 +1,7 @@
 package com.example.security.api;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +19,11 @@ public class FooController {
 	@GetMapping("/private")
 	public ResponseEntity<String> privateRoute(Authentication authentication){
 		return ResponseEntity.ok("Private route ok!!\nSeja bem vindo: " + authentication.getName());
+	}
+	
+	@GetMapping("/admin")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<String> adminRoute(){
+		return ResponseEntity.ok("ADMIN route!");
 	}
 }
