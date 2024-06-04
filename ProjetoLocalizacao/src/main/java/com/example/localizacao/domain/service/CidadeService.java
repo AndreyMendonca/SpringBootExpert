@@ -10,5 +10,7 @@ public interface CidadeService {
 	
 	List<Cidade> findAll();
 	
+	List<Cidade> findByNome(String nome);
+	
 	Optional<Cidade> findById(Long id);
 }

@@ -40,4 +40,9 @@ public class CidadeController {
 				.orElseThrow( 
 						() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não localizado"));
 	}
+	
+	@GetMapping("/nome/{nome}")
+	public List<Cidade> findByNome(@PathVariable String nome){
+		return service.findByNome(nome);
+	}
 }

@@ -31,4 +31,9 @@ public class CidadeServiceImpl implements CidadeService{
 		return repository.findById(id);
 	}
 
+	@Override
+	public List<Cidade> findByNome(String nome) {
+		return repository.findByNomeLike("%" + nome + "%");
+	}
+
 }
