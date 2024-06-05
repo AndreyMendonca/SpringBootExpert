@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.localizacao.domain.entity.Cidade;
@@ -33,7 +34,13 @@ public class CidadeServiceImpl implements CidadeService{
 
 	@Override
 	public List<Cidade> findByNome(String nome) {
-		return repository.findByNomeLike("%" + nome + "%");
+		//Pageable pageable = PageRequest.of(0, 2);
+		
+		//Ordenado
+		return repository.findByNomeLike("%" + nome + "%", Sort.by("habitantes"));
+		
+		//paginado
+		//return (List<Cidade>) repository.findByNomeLike("%" + nome + "%", pageable);
 	}
 
 }

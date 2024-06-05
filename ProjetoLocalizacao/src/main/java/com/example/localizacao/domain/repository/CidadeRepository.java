@@ -2,6 +2,9 @@ package com.example.localizacao.domain.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -25,4 +28,13 @@ public interface CidadeRepository extends JpaRepository<Cidade, Long>{
 	List<Cidade> findByHabitantesLessThan(Long habitantes);
 	
 	List<Cidade> findByHabitantesGreaterThan(Long habitantes);
+	
+	//ordenação 
+	@Query("select c from Cidade c where upper(c.nome) like upper(?1)")
+	List<Cidade> findByNomeLike(String nome, Sort sort);
+	
+	//paginacao
+	@Query("select c from Cidade c where upper(c.nome) like upper(?1)")
+	Page<Cidade> findByNomeLike(String nome, Pageable peageble);
+
 }
