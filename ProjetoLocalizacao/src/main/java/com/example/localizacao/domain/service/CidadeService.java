@@ -13,4 +13,6 @@ public interface CidadeService {
 	List<Cidade> findByNome(String nome);
 	
 	Optional<Cidade> findById(Long id);
+	
+	List<Cidade> filtroDinamico(Cidade cidade);
 }

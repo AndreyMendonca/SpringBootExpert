@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,16 @@ public class CidadeServiceImpl implements CidadeService{
 		
 		//paginado
 		//return (List<Cidade>) repository.findByNomeLike("%" + nome + "%", pageable);
+	}
+
+	@Override
+	public List<Cidade> filtroDinamico(Cidade cidade) {
+		ExampleMatcher matcher = ExampleMatcher
+									.matching()
+									.withIgnoreCase()
+									.withStringMatcher(ExampleMatcher.StringMatcher.STARTING);
+		Example<Cidade> example = Example.of(cidade,matcher);
+		return repository.findAll(example);
 	}
 
 }
