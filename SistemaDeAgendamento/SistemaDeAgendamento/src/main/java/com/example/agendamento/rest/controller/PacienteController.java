@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.agendamento.domain.entity.Paciente;
 import com.example.agendamento.domain.service.PacienteService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/paciente")
+@Tag(name="Paciente", description = "Endpoints para classe paciente")
 public class PacienteController {
 	
 	@Autowired
