@@ -22,6 +22,8 @@ public class SecutiryConfiguration {
 				.csrf(csrf -> csrf.disable())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(authorize -> authorize
+						.requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
+						.requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
 						.requestMatchers(HttpMethod.POST,"/api/products").hasRole("ADMIN")
 						.anyRequest().authenticated()
 				)

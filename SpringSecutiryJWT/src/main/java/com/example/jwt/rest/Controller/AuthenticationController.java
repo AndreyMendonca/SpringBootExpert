@@ -32,15 +32,14 @@ public class AuthenticationController {
 	public ResponseEntity login(@RequestBody AuthenticationDTO user) {
 		var usernamePassword = new UsernamePasswordAuthenticationToken(user.login(), user.passwordUser());
 		var auth = this.authenticationManager.authenticate(usernamePassword);
-		
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok("Você está logado");
 	}
 	
 	@PostMapping("/register")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Users register(@RequestBody AuthenticationDTO user) {
+	public ResponseEntity register(@RequestBody AuthenticationDTO user) {
 		if(this.repository.findByLogin(user.login()) != null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario ou senha incorretos");
 		}
 		
 		String encryptedPassword = new BCryptPasswordEncoder().encode(user.passwordUser());
@@ -48,7 +47,7 @@ public class AuthenticationController {
 		
 		this.repository.save(newUser);
 		
-		return newUser;
+		return ResponseEntity.ok().body(newUser);
 	}
 	
 }
