@@ -8,6 +8,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -22,10 +24,17 @@ import lombok.NoArgsConstructor;
 public class Users implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
 	private String id;
 	private String login;
 	private String passwordUser;
 	private UserRole role;
+	
+	public Users(String login, String passwordUser, UserRole role) {
+		this.login = login;
+		this.passwordUser = passwordUser;
+		this.role = role;
+	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
