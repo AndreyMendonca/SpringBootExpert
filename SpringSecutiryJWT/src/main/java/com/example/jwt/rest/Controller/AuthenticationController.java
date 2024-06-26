@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
+import com.example.jwt.config.secutiry.TokenService;
 import com.example.jwt.domain.entity.DTO.AuthenticationDTO;
+import com.example.jwt.domain.entity.DTO.LoginResponseDTO;
 import com.example.jwt.domain.entity.user.UserRole;
 import com.example.jwt.domain.entity.user.Users;
 import com.example.jwt.domain.repository.UsersRepository;
@@ -28,11 +29,17 @@ public class AuthenticationController {
 	@Autowired
 	private UsersRepository repository;
 	
+	@Autowired
+	private TokenService tokenService;
+	
 	@PostMapping("/login")
 	public ResponseEntity login(@RequestBody AuthenticationDTO user) {
 		var usernamePassword = new UsernamePasswordAuthenticationToken(user.login(), user.passwordUser());
 		var auth = this.authenticationManager.authenticate(usernamePassword);
-		return ResponseEntity.ok("Você está logado");
+		
+		var token = tokenService.generateToken((Users) auth.getPrincipal());
+		
+		return ResponseEntity.ok(new LoginResponseDTO(token));
 	}
 	
 	@PostMapping("/register")
